@@ -9,8 +9,6 @@ interface IModal {
 }
 
 const Modal = ({ children, closeModal, title }: IModal) => {
-  const [open, isOpen] = useState<boolean>(true);
-
   return (
     <div className={styles.modal_background}>
       <ClickAwayListener onClickAway={closeModal}>

@@ -1,0 +1,16 @@
+.dropdown {
+  position: relative;
+  .dropdown_menu {
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    left: 0;
+    top: 20px;
+    width: 100%;
+    z-index: 1;
+
+    &:hover {
+      background: darken(#fff, 10%);
+    }
+  }
+}
