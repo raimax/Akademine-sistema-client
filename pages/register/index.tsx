@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import axiosConfig from "../../axiosConfig";
 import { ClearStorage } from "../../Helpers/ClearStorage";
+import styles from "../../styles/AuthPage.module.scss";
 
 type ISubmit = {
   username: string;
@@ -40,27 +42,25 @@ const Register: NextPage = () => {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={(e) => submit(e)}>
+    <div className={styles.auth_Page}>
+      <h1>Academic system registration</h1>
+      <form onSubmit={(e) => submit(e)} className={styles.auth_form}>
+        <label>Username</label>
         <input
           onChange={(e) => setUsername(e.currentTarget.value)}
           value={username}
           type="text"
           placeholder="username"
         />
+        <label>Password</label>
         <input
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
           type="password"
           placeholder="password"
         />
-        <input
-          onChange={(e) => setEmail(e.currentTarget.value)}
-          value={email}
-          type="email"
-          placeholder="email"
-        />
         <button type="submit">Register</button>
+        <Link href={"/"}>Login</Link>
       </form>
     </div>
   );

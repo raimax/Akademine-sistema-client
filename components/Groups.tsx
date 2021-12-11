@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axiosConfig from "../axiosConfig";
 import Modal from "../components/Modal";
-import styles from "../styles/Groups.module.scss";
+import styles from "../styles/AdminComponent.module.scss";
 import Dropdown from "../components/Dropdown";
+import Cookies from "js-cookie";
+import { HandleErrors } from "../Helpers/HandleErrors";
 
 interface IGroup {
   id: number;
@@ -10,6 +12,7 @@ interface IGroup {
 }
 
 const Groups = () => {
+  const [errors, setErrors] = useState<string[] | null | undefined>(null);
   const [groups, setGroups] = useState<IGroup[] | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newGroupName, setNewGroupName] = useState<string>("");
@@ -40,7 +43,7 @@ const Groups = () => {
     if (groups !== null) {
       return groups.map((group) => {
         return (
-          <div key={group.id} className={styles.group_item}>
+          <div key={group.id} className={styles.component_item}>
             <div>{group.name}</div>
             <Dropdown>
               <div onClick={() => DeleteGroup(group.id)}>Delete</div>
@@ -52,18 +55,16 @@ const Groups = () => {
   };
 
   const AddGroup = async () => {
-    if (newGroupName !== "") {
-      await axiosConfig
-        .post("/Groups", { name: newGroupName })
-        .then(() => {
-          setNewGroupName("");
-          GetGroups();
-          CloseModal();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    await axiosConfig
+      .post("/Groups", { name: newGroupName })
+      .then(() => {
+        setNewGroupName("");
+        GetGroups();
+        CloseModal();
+      })
+      .catch((err) => {
+        setErrors(HandleErrors(err.response.data));
+      });
   };
 
   const CloseModal = () => {
@@ -73,7 +74,7 @@ const Groups = () => {
   const RenderModal = () => {
     if (modalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Add New Group">
+        <Modal closeModal={CloseModal} title="Add New Group" errors={errors}>
           <div>
             <input
               onChange={(e) => setNewGroupName(e.currentTarget.value)}

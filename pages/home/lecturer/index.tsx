@@ -5,7 +5,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Header />
-      student home
+      lecturer home
       <br />
       Welcome,
     </div>

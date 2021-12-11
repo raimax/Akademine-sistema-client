@@ -8,9 +8,15 @@
     top: 20px;
     width: 100%;
     z-index: 1;
+    min-width: fit-content;
 
-    &:hover {
-      background: darken(#fff, 10%);
+    .dropdown_menu_item {
+      padding: 5px;
+      text-align: left;
+
+      &:hover {
+        background: darken(#fff, 10%);
+      }
     }
   }
 }

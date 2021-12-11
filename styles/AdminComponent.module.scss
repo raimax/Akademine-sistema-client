@@ -1,6 +1,7 @@
-.group_item {
+.component_item {
 	display: flex;
 	padding: 10px;
-	width: 200px;
+	width: 300px;
 	justify-content: space-between;
+	white-space: nowrap;
 }

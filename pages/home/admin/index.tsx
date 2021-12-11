@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "../../../components/Header";
 import styles from "../../../styles/Admin.module.scss";
 import SidebarButton from "../../../components/SidebarButton";
-import Groups from "../../../components/Groups"
+import Groups from "../../../components/Groups";
+import Subjects from "../../../components/Subjects";
+import Lecturers from "../../../components/Lecturers";
+import Students from "../../../components/Students";
 
 interface IPage {
   title: string;
@@ -17,15 +20,15 @@ const pages: IPage[] = [
   },
   {
     title: "Subjects",
-    component: <>Subjects</>,
+    component: <Subjects />,
   },
   {
     title: "Lecturers",
-    component: <>Lecturers</>,
+    component: <Lecturers />,
   },
   {
     title: "Students",
-    component: <>Students</>,
+    component: <Students />,
   },
 ];
 

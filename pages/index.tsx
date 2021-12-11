@@ -5,6 +5,8 @@ import router from "next/router";
 import Cookies from "js-cookie";
 import { AxiosResponse } from "axios";
 import { ClearStorage } from "../Helpers/ClearStorage";
+import styles from "../styles/AuthPage.module.scss";
+import Link from "next/link";
 
 type ISubmit = {
   username: string;
@@ -57,14 +59,17 @@ const Index: NextPage = () => {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={(e) => submit(e)}>
+    <div className={styles.auth_Page}>
+      <h1>Academic system login</h1>
+      <form onSubmit={(e) => submit(e)} className={styles.auth_form}>
+        <label>Username</label>
         <input
           onChange={(e) => setUsername(e.currentTarget.value)}
           value={username}
           type="text"
           placeholder="username"
         />
+        <label>Password</label>
         <input
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
@@ -72,6 +77,7 @@ const Index: NextPage = () => {
           placeholder="password"
         />
         <button type="submit">Login</button>
+        <Link href={"/register"}>Register</Link>
       </form>
     </div>
   );

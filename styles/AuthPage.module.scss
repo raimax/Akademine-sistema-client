@@ -1,0 +1,17 @@
+.auth_Page {
+  position: absolute;
+  top: 40%;
+  right: 50%;
+  transform: translate(50%, -50%);
+
+	.auth_form {
+		display: flex;
+		flex-direction: column;
+		max-width: 300px;
+		margin: 0 auto;
+
+		>*:not(:last-child) {
+			margin-bottom: 10px;
+		}
+	}
+}
