@@ -1,7 +1,18 @@
-.component_item {
-	display: flex;
-	padding: 10px;
-	width: 300px;
-	justify-content: space-between;
-	white-space: nowrap;
+.component_table {
+	margin-top: 20px;
+	border-collapse: collapse;
+
+	th {
+		padding: 5px 10px;
+		background: rgb(22, 22, 22);
+		color: white;
+	}
+
+	tr:nth-child(2n) {
+		background: #eee;
+	}
+
+	td {
+		padding: 5px 10px;
+	}
 }

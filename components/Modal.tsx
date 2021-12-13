@@ -3,7 +3,7 @@ import ClickAwayListener from "react-click-away-listener";
 import { useState } from "react";
 
 interface IModal {
-  children: JSX.Element[];
+  children: React.ReactNode;
   closeModal: any;
   title: string;
   errors: string[] | null | undefined;

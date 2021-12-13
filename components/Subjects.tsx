@@ -3,6 +3,7 @@ import axiosConfig from "../axiosConfig";
 import Modal from "../components/Modal";
 import styles from "../styles/AdminComponent.module.scss";
 import Dropdown from "../components/Dropdown";
+import { HandleErrors } from "../Helpers/HandleErrors";
 
 interface ISubject {
   id: number;
@@ -10,6 +11,7 @@ interface ISubject {
 }
 
 const Subjects = () => {
+  const [errors, setErrors] = useState<string[] | null | undefined>(null);
   const [subjects, setSubjects] = useState<ISubject[] | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newSubjectName, setNewSubjectName] = useState<string>("");
@@ -37,18 +39,22 @@ const Subjects = () => {
   };
 
   const RenderSubjects = () => {
-    if (subjects !== null) {
+    if (subjects?.length) {
       return subjects.map((subject) => {
         return (
-          <div key={subject.id} className={styles.component_item}>
-            <div>{subject.name}</div>
-            <Dropdown>
-              <div onClick={() => DeleteSubject(subject.id)}>Delete</div>
-            </Dropdown>
-          </div>
+          <tr key={subject.id} className={styles.component_item}>
+            <td>{subject.name}</td>
+            <td>
+              <Dropdown>
+                <div onClick={() => DeleteSubject(subject.id)}>Delete</div>
+              </Dropdown>
+            </td>
+          </tr>
         );
       });
     }
+
+    return <tr><td>No subjects</td></tr>
   };
 
   const AddSubject = async () => {
@@ -61,7 +67,7 @@ const Subjects = () => {
           CloseModal();
         })
         .catch((err) => {
-          console.log(err);
+          setErrors(HandleErrors(err));
         });
     }
   };
@@ -73,7 +79,7 @@ const Subjects = () => {
   const RenderModal = () => {
     if (modalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Add New Subject">
+        <Modal closeModal={CloseModal} title="Add New Subject" errors={errors}>
           <div>
             <input
               onChange={(e) => setNewSubjectName(e.currentTarget.value)}
@@ -101,7 +107,15 @@ const Subjects = () => {
       <div>
         <button onClick={() => setModalOpen(true)}>Add New Subject</button>
       </div>
-      <div>{RenderSubjects()}</div>
+      <table className={styles.component_table}>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Options</th>
+          </tr>
+          {RenderSubjects()}
+        </tbody>
+      </table>
     </div>
   );
 };

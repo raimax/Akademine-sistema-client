@@ -4,7 +4,7 @@ import ClickAwayListener from "react-click-away-listener";
 import React from 'react'
 
 interface IDropdown {
-  children: React.ReactChild[];
+  children: React.ReactChild | React.ReactChild[];
 }
 
 const Dropdown = ({ children }: IDropdown) => {

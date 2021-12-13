@@ -40,18 +40,22 @@ const Groups = () => {
   };
 
   const RenderGroups = () => {
-    if (groups !== null) {
+    if (groups?.length) {
       return groups.map((group) => {
         return (
-          <div key={group.id} className={styles.component_item}>
-            <div>{group.name}</div>
-            <Dropdown>
-              <div onClick={() => DeleteGroup(group.id)}>Delete</div>
-            </Dropdown>
-          </div>
+          <tr key={group.id} className={styles.component_item}>
+            <td>{group.name}</td>
+            <td>
+              <Dropdown>
+                <div onClick={() => DeleteGroup(group.id)}>Delete</div>
+              </Dropdown>
+            </td>
+          </tr>
         );
       });
     }
+
+    return <tr><td>No groups</td></tr>
   };
 
   const AddGroup = async () => {
@@ -102,7 +106,15 @@ const Groups = () => {
       <div>
         <button onClick={() => setModalOpen(true)}>Add New Group</button>
       </div>
-      <div>{RenderGroups()}</div>
+        <table className={styles.component_table}>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Options</th>
+            </tr>
+            {RenderGroups()}
+          </tbody>
+        </table>
     </div>
   );
 };

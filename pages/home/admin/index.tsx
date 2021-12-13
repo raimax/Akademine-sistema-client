@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../../components/Header";
 import styles from "../../../styles/Admin.module.scss";
 import SidebarButton from "../../../components/SidebarButton";
@@ -7,6 +7,7 @@ import Groups from "../../../components/Groups";
 import Subjects from "../../../components/Subjects";
 import Lecturers from "../../../components/Lecturers";
 import Students from "../../../components/Students";
+import RestrictAccess from "../../../Helpers/RestrictAccess";
 
 interface IPage {
   title: string;
@@ -48,6 +49,10 @@ const Admin: NextPage = () => {
   const OnSidebarButtonClick = (e: any) => {
     setActivePage(e.currentTarget.id);
   };
+
+  useEffect(() => {
+    RestrictAccess("Student");
+  }, []);
 
   return (
     <>
