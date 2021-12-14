@@ -43,24 +43,24 @@ const Register: NextPage = () => {
 
   return (
     <div className={styles.auth_Page}>
-      <h1>Academic system registration</h1>
+      <h1>Akademinės sistemos registracija</h1>
       <form onSubmit={(e) => submit(e)} className={styles.auth_form}>
-        <label>Username</label>
+        <label>Slapyvardis</label>
         <input
           onChange={(e) => setUsername(e.currentTarget.value)}
           value={username}
           type="text"
-          placeholder="username"
+          placeholder="slapyvardis"
         />
-        <label>Password</label>
+        <label>Slaptažodis</label>
         <input
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
           type="password"
-          placeholder="password"
+          placeholder="slaptažodis"
         />
-        <button type="submit">Register</button>
-        <Link href={"/"}>Login</Link>
+        <button type="submit">Registruotis</button>
+        <Link href={"/"}>Prisijungti</Link>
       </form>
     </div>
   );

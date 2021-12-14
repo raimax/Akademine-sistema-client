@@ -89,18 +89,18 @@ const Students = () => {
             <td>{student.firstName}</td>
             <td>{student.lastName}</td>
             <td key={student.id}>
-              {student.studentGroup?.group?.name || "< not assigned >"}
+              {student.studentGroup?.group?.name || "< nepriskirta >"}
             </td>
             <td>
               <Dropdown>
-                <div onClick={() => DeleteStudent(student.id)}>Delete</div>
+                <div onClick={() => DeleteStudent(student.id)}>Pašalinti</div>
                 <div
                   onClick={() => {
                     setSelectedStudent(student);
                     setAssignGroupModalOpen(true);
                   }}
                 >
-                  Assign Subject
+                  Priskirti grupę
                 </div>
               </Dropdown>
             </td>
@@ -109,7 +109,7 @@ const Students = () => {
       });
     }
 
-    return <tr><td>No students</td></tr>
+    return <tr><td>Nėra studentų</td></tr>
   };
 
   const AddStudent = async () => {
@@ -142,22 +142,22 @@ const Students = () => {
   const RenderAddStudentModal = () => {
     if (addStudentModalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Add New Student" errors={errors}>
+        <Modal closeModal={CloseModal} title="Pridėti naują studentą" errors={errors}>
           <input
             onChange={(e) => setNewStudentFirstName(e.currentTarget.value)}
             value={newStudentFirstName}
             type="text"
-            placeholder="Enter student's first name"
+            placeholder="Įveskite studento vardą"
           />
           <input
             onChange={(e) => setNewStudentLastName(e.currentTarget.value)}
             value={newStudentLastName}
             type="text"
-            placeholder="Enter student's last name"
+            placeholder="Įveskite studento vapardę"
           />
           <div>
-            <button onClick={AddStudent}>Add Student</button>
-            <button onClick={CloseModal}>Cancel</button>
+            <button onClick={AddStudent}>Pridėti studentą</button>
+            <button onClick={CloseModal}>Atšaukti</button>
           </div>
         </Modal>
       );
@@ -174,7 +174,7 @@ const Students = () => {
         );
       });
     }
-    return <option value={undefined}>No groups found</option>;
+    return <option value={undefined}>Nėra grupių</option>;
   };
 
   const RenderAssignGroupModal = () => {
@@ -182,7 +182,7 @@ const Students = () => {
       return (
         <Modal
           closeModal={CloseModal}
-          title="Assign Group to Student"
+          title="Priskirti grupę studentui"
           errors={errors}
         >
           <span>
@@ -190,8 +190,8 @@ const Students = () => {
           </span>
           <select ref={groupSelection}>{RenderGroupOptions()}</select>
           <div>
-            <button onClick={AssignGroup}>Assign Group</button>
-            <button onClick={CloseModal}>Cancel</button>
+            <button onClick={AssignGroup}>Priskirti grupę</button>
+            <button onClick={CloseModal}>Atšaukti</button>
           </div>
         </Modal>
       );
@@ -227,16 +227,16 @@ const Students = () => {
       {RenderAssignGroupModal()}
       <div>
         <button onClick={() => setAddStudentModalOpen(true)}>
-          Add New Student
+          Pridėti studentą
         </button>
       </div>
       <table className={styles.component_table}>
         <tbody>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Group</th>
-            <th>Options</th>
+            <th>Vardas</th>
+            <th>Pavardė</th>
+            <th>Grupė</th>
+            <th>Pasirinkimai</th>
           </tr>
           {RenderStudents()}
         </tbody>

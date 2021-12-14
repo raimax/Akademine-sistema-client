@@ -21,7 +21,7 @@ const Dropdown = ({ children }: IDropdown) => {
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
       <button onClick={() => setOpen(!open)} className={styles.dropdown}>
-        Options
+        Pasirinkimai
         {open && <div className={styles.dropdown_menu}>{RenderChildren()}</div>}
       </button>
     </ClickAwayListener>

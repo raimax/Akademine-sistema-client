@@ -20,8 +20,8 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div>Welcome, {currentUser?.username}</div>
-      <button onClick={Logout}>Logout</button>
+      <div>Sveiki, {currentUser?.username}</div>
+      <button onClick={Logout}>Atsijungti</button>
     </header>
   );
 };

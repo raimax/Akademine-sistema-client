@@ -62,25 +62,25 @@ const Admin: NextPage = () => {
           <SidebarButton
             onClick={OnSidebarButtonClick}
             id="Groups"
-            content="Groups"
+            content="Grupės"
             active={activePage === "Groups" ? true : false}
           />
           <SidebarButton
             onClick={OnSidebarButtonClick}
             id="Subjects"
-            content="Subjects"
+            content="Dalykai"
             active={activePage === "Subjects" ? true : false}
           />
           <SidebarButton
             onClick={OnSidebarButtonClick}
             id="Lecturers"
-            content="Lecturers"
+            content="Dėstytojai"
             active={activePage === "Lecturers" ? true : false}
           />
           <SidebarButton
             onClick={OnSidebarButtonClick}
             id="Students"
-            content="Students"
+            content="Studentai"
             active={activePage === "Students" ? true : false}
           />
         </div>

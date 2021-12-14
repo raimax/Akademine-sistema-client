@@ -91,18 +91,18 @@ const Lecturers = () => {
             <td>{lecturer.firstName}</td>
             <td>{lecturer.lastName}</td>
             <td key={lecturer.id}>
-              {lecturer.lecturerSubject?.subject?.name || "< not assigned >"}
+              {lecturer.lecturerSubject?.subject?.name || "< nepriskirta >"}
             </td>
             <td>
               <Dropdown>
-                <div onClick={() => DeleteLecturer(lecturer.id)}>Delete</div>
+                <div onClick={() => DeleteLecturer(lecturer.id)}>Pašalinti</div>
                 <div
                   onClick={() => {
                     setSelectedLecturer(lecturer);
                     setAssignSubjectModalOpen(true);
                   }}
                 >
-                  Assign Subject
+                  Priskirti dalyką
                 </div>
               </Dropdown>
             </td>
@@ -111,7 +111,7 @@ const Lecturers = () => {
       });
     }
 
-    return <tr><td>No lecturers</td></tr>
+    return <tr><td>Nėra dėstytojų</td></tr>
   };
 
   const AddLecturer = async () => {
@@ -145,22 +145,22 @@ const Lecturers = () => {
   const RenderAddLecturerModal = () => {
     if (addLecturerModalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Add New Lecturer" errors={errors}>
+        <Modal closeModal={CloseModal} title="Pridėti naują dėstytoją" errors={errors}>
           <input
             onChange={(e) => setNewLecturerFirstName(e.currentTarget.value)}
             value={newLecturerFirstName}
             type="text"
-            placeholder="Enter lecturer's first name"
+            placeholder="Įveskite dėstytojo vardą"
           />
           <input
             onChange={(e) => setNewLecturerLastName(e.currentTarget.value)}
             value={newLecturerLastName}
             type="text"
-            placeholder="Enter lecturer's last name"
+            placeholder="Įveskite dėstytojo pavardę"
           />
           <div>
-            <button onClick={AddLecturer}>Add Lecturer</button>
-            <button onClick={CloseModal}>Cancel</button>
+            <button onClick={AddLecturer}>Pridėti dėstytoją</button>
+            <button onClick={CloseModal}>Atšaukti</button>
           </div>
         </Modal>
       );
@@ -177,7 +177,7 @@ const Lecturers = () => {
         );
       });
     }
-    return <option value={undefined}>No subjects found</option>;
+    return <option value={undefined}>Nėra dalykų</option>;
   };
 
   const RenderAssignSubjectModal = () => {
@@ -185,7 +185,7 @@ const Lecturers = () => {
       return (
         <Modal
           closeModal={CloseModal}
-          title="Assign Subject to Lecturer"
+          title="Priskirti dalyką dėstytojui"
           errors={errors}
         >
           <span>
@@ -193,8 +193,8 @@ const Lecturers = () => {
           </span>
           <select ref={subjectSelection}>{RenderSubjectOptions()}</select>
           <div>
-            <button onClick={AssignSubject}>Assign Subject</button>
-            <button onClick={CloseModal}>Cancel</button>
+            <button onClick={AssignSubject}>Priskirti dalyką</button>
+            <button onClick={CloseModal}>Atšaukti</button>
           </div>
         </Modal>
       );
@@ -230,16 +230,16 @@ const Lecturers = () => {
       {RenderAssignSubjectModal()}
       <div>
         <button onClick={() => setaddLecturerModalOpen(true)}>
-          Add New Lecturer
+          Pridėti dėstytoją
         </button>
       </div>
       <table className={styles.component_table}>
         <tbody>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Subject</th>
-            <th>Options</th>
+            <th>Vardas</th>
+            <th>Pavardė</th>
+            <th>Dalykas</th>
+            <th>Pasirinkimai</th>
           </tr>
           {RenderLecturers()}
         </tbody>

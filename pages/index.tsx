@@ -60,24 +60,24 @@ const Index: NextPage = () => {
 
   return (
     <div className={styles.auth_Page}>
-      <h1>Academic system login</h1>
+      <h1>Akademinės sitemos prisijungimas</h1>
       <form onSubmit={(e) => submit(e)} className={styles.auth_form}>
-        <label>Username</label>
+        <label>Slapyvardis</label>
         <input
           onChange={(e) => setUsername(e.currentTarget.value)}
           value={username}
           type="text"
-          placeholder="username"
+          placeholder="slapyvardis"
         />
-        <label>Password</label>
+        <label>Slaptažodis</label>
         <input
           onChange={(e) => setPassword(e.currentTarget.value)}
           value={password}
           type="password"
-          placeholder="password"
+          placeholder="slaptažodis"
         />
-        <button type="submit">Login</button>
-        <Link href={"/register"}>Register</Link>
+        <button type="submit">Prisijungti</button>
+        <Link href={"/register"}>Registruotis</Link>
       </form>
     </div>
   );

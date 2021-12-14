@@ -46,7 +46,7 @@ const Subjects = () => {
             <td>{subject.name}</td>
             <td>
               <Dropdown>
-                <div onClick={() => DeleteSubject(subject.id)}>Delete</div>
+                <div onClick={() => DeleteSubject(subject.id)}>Pašalinti</div>
               </Dropdown>
             </td>
           </tr>
@@ -79,18 +79,18 @@ const Subjects = () => {
   const RenderModal = () => {
     if (modalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Add New Subject" errors={errors}>
+        <Modal closeModal={CloseModal} title="Pridėti naują dalyką" errors={errors}>
           <div>
             <input
               onChange={(e) => setNewSubjectName(e.currentTarget.value)}
               value={newSubjectName}
               type="text"
-              placeholder="Enter subject's name"
+              placeholder="Įveskite dalyko pavadinimą"
             ></input>
           </div>
           <div>
-            <button onClick={AddSubject}>Add Subject</button>
-            <button onClick={CloseModal}>Cancel</button>
+            <button onClick={AddSubject}>Pridėti dalyką</button>
+            <button onClick={CloseModal}>Atšaukti</button>
           </div>
         </Modal>
       );
@@ -105,13 +105,13 @@ const Subjects = () => {
     <div>
       {RenderModal()}
       <div>
-        <button onClick={() => setModalOpen(true)}>Add New Subject</button>
+        <button onClick={() => setModalOpen(true)}>Pridėti dalyką</button>
       </div>
       <table className={styles.component_table}>
         <tbody>
           <tr>
-            <th>Name</th>
-            <th>Options</th>
+            <th>Pavadinimas</th>
+            <th>Pasirinkimai</th>
           </tr>
           {RenderSubjects()}
         </tbody>
