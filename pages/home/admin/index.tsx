@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import Header from "../../../components/Header";
-import styles from "../../../styles/Admin.module.scss";
+import styles from "../../../styles/Page.module.scss";
 import SidebarButton from "../../../components/SidebarButton";
 import Groups from "../../../components/Groups";
 import Subjects from "../../../components/Subjects";
@@ -57,7 +57,7 @@ const Admin: NextPage = () => {
   return (
     <>
       <Header />
-      <div className={styles.admin_page}>
+      <div className={styles.page}>
         <div className={styles.sidebar}>
           <SidebarButton
             onClick={OnSidebarButtonClick}

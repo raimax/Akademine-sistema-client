@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axiosConfig from "../axiosConfig";
 import Modal from "../components/Modal";
-import styles from "../styles/AdminComponent.module.scss";
+import styles from "../styles/Table.module.scss";
 import Dropdown from "../components/Dropdown";
 import { HandleErrors } from "../Helpers/HandleErrors";
 
@@ -82,7 +82,7 @@ const Students = () => {
   };
 
   const RenderStudents = () => {
-    if (students ?.length) {
+    if (students?.length) {
       return students.map((student) => {
         return (
           <tr key={student.id} className={styles.component_item}>
@@ -109,7 +109,11 @@ const Students = () => {
       });
     }
 
-    return <tr><td>Nėra studentų</td></tr>
+    return (
+      <tr>
+        <td>Nėra studentų</td>
+      </tr>
+    );
   };
 
   const AddStudent = async () => {
@@ -142,7 +146,11 @@ const Students = () => {
   const RenderAddStudentModal = () => {
     if (addStudentModalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Pridėti naują studentą" errors={errors}>
+        <Modal
+          closeModal={CloseModal}
+          title="Pridėti naują studentą"
+          errors={errors}
+        >
           <input
             onChange={(e) => setNewStudentFirstName(e.currentTarget.value)}
             value={newStudentFirstName}

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import axiosConfig from "../axiosConfig";
 import Modal from "../components/Modal";
-import styles from "../styles/AdminComponent.module.scss";
+import styles from "../styles/Table.module.scss";
 import Dropdown from "../components/Dropdown";
 import { HandleErrors } from "../Helpers/HandleErrors";
 
@@ -111,7 +111,11 @@ const Lecturers = () => {
       });
     }
 
-    return <tr><td>Nėra dėstytojų</td></tr>
+    return (
+      <tr>
+        <td>Nėra dėstytojų</td>
+      </tr>
+    );
   };
 
   const AddLecturer = async () => {
@@ -145,7 +149,11 @@ const Lecturers = () => {
   const RenderAddLecturerModal = () => {
     if (addLecturerModalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Pridėti naują dėstytoją" errors={errors}>
+        <Modal
+          closeModal={CloseModal}
+          title="Pridėti naują dėstytoją"
+          errors={errors}
+        >
           <input
             onChange={(e) => setNewLecturerFirstName(e.currentTarget.value)}
             value={newLecturerFirstName}

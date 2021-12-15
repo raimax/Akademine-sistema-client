@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axiosConfig from "../axiosConfig";
 import Modal from "../components/Modal";
-import styles from "../styles/AdminComponent.module.scss";
+import styles from "../styles/Table.module.scss";
 import Dropdown from "../components/Dropdown";
 import { HandleErrors } from "../Helpers/HandleErrors";
 import MultipleOptionsToArray from "../Helpers/MultipleOptionsToArray";
@@ -26,7 +26,7 @@ interface ISubject {
 
 interface IGroupSubject {
   id: number;
-  subject?: ISubject
+  subject?: ISubject;
 }
 
 interface IGroup {
@@ -155,7 +155,11 @@ const Groups = () => {
   const RenderAddGroupModal = () => {
     if (addGroupModalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Sukurti naują grupę" errors={errors}>
+        <Modal
+          closeModal={CloseModal}
+          title="Sukurti naują grupę"
+          errors={errors}
+        >
           <div>
             <input
               onChange={(e) => setNewGroupName(e.currentTarget.value)}

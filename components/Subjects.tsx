@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosConfig from "../axiosConfig";
 import Modal from "../components/Modal";
-import styles from "../styles/AdminComponent.module.scss";
+import styles from "../styles/Table.module.scss";
 import Dropdown from "../components/Dropdown";
 import { HandleErrors } from "../Helpers/HandleErrors";
 
@@ -54,7 +54,11 @@ const Subjects = () => {
       });
     }
 
-    return <tr><td>No subjects</td></tr>
+    return (
+      <tr>
+        <td>No subjects</td>
+      </tr>
+    );
   };
 
   const AddSubject = async () => {
@@ -79,7 +83,11 @@ const Subjects = () => {
   const RenderModal = () => {
     if (modalOpen) {
       return (
-        <Modal closeModal={CloseModal} title="Pridėti naują dalyką" errors={errors}>
+        <Modal
+          closeModal={CloseModal}
+          title="Pridėti naują dalyką"
+          errors={errors}
+        >
           <div>
             <input
               onChange={(e) => setNewSubjectName(e.currentTarget.value)}

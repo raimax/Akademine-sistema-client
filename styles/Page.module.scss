@@ -1,7 +1,11 @@
-.admin_page {
+.page {
 	display: flex;
 	width: 70%;
 	margin: 0 auto;
+}
+
+.flex_column{
+	flex-direction: column;
 }
 
 .sidebar {
