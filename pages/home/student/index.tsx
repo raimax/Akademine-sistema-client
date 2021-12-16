@@ -55,7 +55,7 @@ const Home: NextPage = () => {
           return (
             <tr key={grade.id}>
               <td>{grade.subject.name}</td>
-              <td>
+              <td className={table.flex}>
                 <div>
                   {grades
                     .filter((q) => q.subjectId == grade.subjectId)

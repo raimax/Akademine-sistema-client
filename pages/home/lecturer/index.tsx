@@ -10,7 +10,14 @@ import Modal from "../../../components/Modal";
 import Grade from "../../../components/Grade";
 import Dropdown from "../../../components/Dropdown";
 
-interface AddGradeData {
+interface IEditGradeData {
+  id?: number
+  userId?: string | null;
+  subjectId?: number;
+  grade: number;
+}
+
+interface IAddGradeData {
   userId?: string | null;
   subjectId?: number;
   grade: number;
@@ -155,6 +162,7 @@ const Home: NextPage = () => {
 
   const CloseModal = () => {
     setAddGradeModalOpen(false);
+    setEditGradeModalOpen(false);
   };
 
   const RenderAddGradeModal = () => {
@@ -197,7 +205,7 @@ const Home: NextPage = () => {
 
   const AddGrades = async () => {
     if (lecturer?.lecturerSubject?.subject?.id) {
-      const data: AddGradeData = {
+      const data: IAddGradeData = {
         userId:
           studentSelection.current?.options[
             studentSelection.current.selectedIndex
@@ -217,10 +225,66 @@ const Home: NextPage = () => {
     }
   };
 
+  const RenderEditGradeModal = () => {
+    if (editGradeModalOpen) {
+      return (
+        <Modal
+          closeModal={CloseModal}
+          title="Taisyti pažymį studentui"
+          errors={errors}
+        >
+          <span>Studentas</span>
+          <select
+            disabled
+            defaultValue={
+              selectedGrade?.user.firstName + " " + selectedGrade?.user.lastName
+            }
+            ref={studentSelection}
+          >
+            {RenderStudentOptions()}
+          </select>
+          <span>Pažymys</span>
+          <input
+            value={grade}
+            onChange={(e) => setGrade(e.currentTarget.value)}
+            type="number"
+            placeholder="Įveskite pažymį"
+          ></input>
+          <div>
+            <button onClick={EditGrade}>Taisyti pažymį</button>
+            <button onClick={CloseModal}>Atšaukti</button>
+          </div>
+        </Modal>
+      );
+    }
+  };
+
+  const EditGrade = async () => {
+    const data: IEditGradeData = {
+      id: selectedGrade?.id,
+      userId:
+        studentSelection.current?.options[
+          studentSelection.current.selectedIndex
+        ].getAttribute("data-student-id"),
+      subjectId: lecturer?.lecturerSubject?.subject?.id,
+      grade: parseInt(grade),
+    };
+
+    await axiosConfig
+      .put("/StudentGrades", data)
+      .then(() => {
+        setGrade("");
+        CloseModal();
+        GetGrades(lecturer?.lecturerSubject?.subject?.id);
+      })
+      .catch((err) => console.log(err.response));
+  };
+
   return (
     <>
       <Header />
       {RenderAddGradeModal()}
+      {RenderEditGradeModal()}
       <div className={`${styles.page} ${styles.flex_column}`}>
         <div>
           <button onClick={() => setAddGradeModalOpen(true)}>
